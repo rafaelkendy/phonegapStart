@@ -1,0 +1,3 @@
+# phonegapStart
+First attempt phonegap
+
