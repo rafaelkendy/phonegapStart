@@ -6,14 +6,14 @@
         id        = "com.rafaelkendy.firstTest"
         version   = "1.0.0">
 
-    <name>Phone Gap Start</name>
+    <name>Rafael Kendy</name>
 
     <description>
         First Test sample application that responds to the deviceready event.
     </description>
 
     <author href="http://rafaelkendy.com" email="rafaelkendy@gmail.com">
-        PhoneGap Team
+        Rafael Kendy
     </author>
 
     <!--
