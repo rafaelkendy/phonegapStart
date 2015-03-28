@@ -8,6 +8,12 @@
 	<script>
 		zog("hi from first");
 		window.plugins.tts.speak("The TTS service is ready", win, fail);
+		function win(){
+			console.log(1);
+		}
+		function fail(){
+			console.log(1);
+		}
 	</script>
 </head>
 <body>
