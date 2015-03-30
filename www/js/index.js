@@ -44,12 +44,14 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
-        console.log('Received Event: ' + id);
+        //console.log('Received Event: ' + id);
+        alert(received);
 
         window.addEventListener("batterystatus", onBatteryStatus, false);
 
         function onBatteryStatus(info) {
             // Handle the online event
+            alert(info.level);
             document.getElementById("batterystatus").innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
         }
     }
