@@ -47,6 +47,8 @@ var app = {
         //console.log('Received Event: ' + id);
         alert("received");
 
+        testAlarm.setAlarm(2);
+
         window.addEventListener("batterystatus", onBatteryStatus, false);
 
         function onBatteryStatus(info) {
@@ -54,5 +56,57 @@ var app = {
             alert(info.level);
             document.getElementById("batteryStatus").innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
         }
+
+        window.plugins.tts.startup(
+            function (){
+                alert("win startup");
+                window.plugins.tts.speak("The TTS service is ready",
+                    function (){
+                        alert("win speak");
+                    },
+                    function (){
+                        alert("fail speak");
+                    }
+                );
+            },
+            function (){
+                alert("fail startup");
+            }
+        );
     }
 };
+
+var testAlarm = {
+    setAlarm:function(caseNo){
+        alert(caseNo);
+        var d = new Date();
+        if(caseNo == 1){
+            d.setTime(d.getTime() - 2*60*1000); // set the alarm for two minutes prior to the current time on the next day
+        } else if(caseNo == 2){
+            d.setTime(d.getTime() + 2*60*1000);
+        } else if(caseNo == 3){
+            d.setTime(d.getTime() + 5*60*1000);
+        }
+        var optionsAlarm = [{
+            type : 'onetime',
+            time : { hour : d.getHours(), minute : d.getMinutes() },
+            message : 'Alarm has triggered!',
+            extra : { message : 'this json will be passed back to javascript as result.extra when the alarm expires' }
+        }];
+        window.wakeuptimer.wakeup(
+            function(result) {
+                if (result.type==='wakeup') {
+                    alert('wakeup alarm detected--' + result.extra);
+                } else if(result.type==='set'){
+                    alert('wakeup alarm set--' + result);
+                } else {
+                    alert('wakeup unhandled type (' + result.type + ')');
+                }
+            },
+            function() {
+                alert('Error Handler');
+            },
+            {alarms : optionsAlarm}
+        );
+    }
+}
