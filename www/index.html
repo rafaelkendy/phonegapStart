@@ -8,12 +8,31 @@
 
 	<script>
 		zog("hi from first");
-		window.plugins.tts.speak("The TTS service is ready", win, fail);
+		navigator.tts.startup(function (){
+			navigator.tts.speak('whatever whatever',
+			function (){
+				document.getElementById("ttsStatus").innerHTML = "success speak";
+			},
+			function (){
+				document.getElementById("ttsStatus").innerHTML = "fail speak";
+			});
+		},
+		function (){
+			document.getElementById("ttsStatus").innerHTML = "error startUp";
+		});
+
+		window.addEventListener("batterystatus", onBatteryStatus, false);
+
+		function onBatteryStatus(info) {
+		    // Handle the online event
+		    document.getElementById("batterystatus").innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
+		}
 	</script>
 </head>
 <body>
 
 Hello First World
-
+<div id="batteryStatus"></div>
+<div id="ttsStatus"></div>
 </body>
 </html>
