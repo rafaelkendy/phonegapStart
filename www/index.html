@@ -2,22 +2,22 @@
 <head>
 	<title>Phone Gap Start</title>
 	<script src="cordova.js"></script>
-	<script src="tts.js"></script>
+	
 
 	<script>
-		window.tts.startup(function (){
-			window.tts.speak('whatever whatever',
-				function (){
-					document.getElementById("ttsStatus").innerHTML = "success speak";
-				},
-				function (){
-					document.getElementById("ttsStatus").innerHTML = "fail speak";
-				}
-			);
-		},
-		function (){
-			document.getElementById("ttsStatus").innerHTML = "error startUp";
-		});
+		// window.tts.startup(function (){
+		// 	window.tts.speak('whatever whatever',
+		// 		function (){
+		// 			document.getElementById("ttsStatus").innerHTML = "success speak";
+		// 		},
+		// 		function (){
+		// 			document.getElementById("ttsStatus").innerHTML = "fail speak";
+		// 		}
+		// 	);
+		// },
+		// function (){
+		// 	document.getElementById("ttsStatus").innerHTML = "error startUp";
+		// });
 
 		window.addEventListener("batterystatus", onBatteryStatus, false);
 
@@ -29,7 +29,7 @@
 </head>
 <body>
 
-Hello First World!
+Hello First World!!
 <div id="batteryStatus"></div>
 <div id="ttsStatus"></div>
 </body>
