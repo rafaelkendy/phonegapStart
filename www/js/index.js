@@ -52,7 +52,7 @@ var app = {
         function onBatteryStatus(info) {
             // Handle the online event
             alert(info.level);
-            document.getElementById("batterystatus").innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
+            document.getElementById("batteryStatus").innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
         }
     }
 };
