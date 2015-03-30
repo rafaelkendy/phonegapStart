@@ -1,21 +1,19 @@
 <html>
 <head>
 	<title>Phone Gap Start</title>
-	<script src="js/createjs-2014.12.12.min.js"></script>
-	<script src="js/zim_1.4.js"></script>
-	<script src="js/zim_1.4_min.js"></script>
+	
 	<script src="tts.js"></script>
 
 	<script>
-		zog("hi from first");
-		navigator.tts.startup(function (){
-			navigator.tts.speak('whatever whatever',
-			function (){
-				document.getElementById("ttsStatus").innerHTML = "success speak";
-			},
-			function (){
-				document.getElementById("ttsStatus").innerHTML = "fail speak";
-			});
+		window.tts.startup(function (){
+			window.tts.speak('whatever whatever',
+				function (){
+					document.getElementById("ttsStatus").innerHTML = "success speak";
+				},
+				function (){
+					document.getElementById("ttsStatus").innerHTML = "fail speak";
+				}
+			);
 		},
 		function (){
 			document.getElementById("ttsStatus").innerHTML = "error startUp";
@@ -31,7 +29,7 @@
 </head>
 <body>
 
-Hello First World
+Hello First World!
 <div id="batteryStatus"></div>
 <div id="ttsStatus"></div>
 </body>
