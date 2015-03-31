@@ -74,9 +74,10 @@ var app = {
         //     }
         // );
 
-        window.TtsPlugin.iniTTS(
+        window.ttsPlugin.iniTTS(
             function (){
-                window.TtsPlugin.speak("Hello World");
+                window.ttsPlugin.speak("Hello World");
+                alert("win initTTs");
             },
             function (){
                 alert("fail initTTS");
