@@ -47,7 +47,7 @@ var app = {
         //console.log('Received Event: ' + id);
         alert("received");
 
-        testAlarm.setAlarm(2);
+        //testAlarm.setAlarm(2);
 
         window.addEventListener("batterystatus", onBatteryStatus, false);
 
@@ -57,26 +57,35 @@ var app = {
             document.getElementById("batteryStatus").innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
         }
 
-        window.tts.startup(
+        // window.tts.startup(
+        //     function (){
+        //         alert("win startup");
+        //         window.tts.speak("The TTS service is ready",
+        //             function (){
+        //                 alert("win speak");
+        //             },
+        //             function (){
+        //                 alert("fail speak");
+        //             }
+        //         );
+        //     },
+        //     function (){
+        //         alert("fail startup");
+        //     }
+        // );
+
+        window.TtsPlugin.iniTTS(
             function (){
-                alert("win startup");
-                window.tts.speak("The TTS service is ready",
-                    function (){
-                        alert("win speak");
-                    },
-                    function (){
-                        alert("fail speak");
-                    }
-                );
+                window.TtsPlugin.speak("Hello World");
             },
             function (){
-                alert("fail startup");
+                alert("fail initTTS");
             }
         );
     }
 };
 
-var testAlarm = {
+/*var testAlarm = {
     setAlarm:function(caseNo){
         alert(caseNo);
         var d = new Date();
@@ -109,4 +118,4 @@ var testAlarm = {
             {alarms : optionsAlarm}
         );
     }
-}
+}*/
