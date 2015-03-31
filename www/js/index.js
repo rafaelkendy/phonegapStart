@@ -74,9 +74,9 @@ var app = {
         //     }
         // );
 
-        window.ttsPlugin.iniTTS(
+        ttsPlugin.iniTTS(
             function (){
-                window.ttsPlugin.speak("Hello World");
+                ttsPlugin.speak("Hello World");
                 alert("win initTTs");
             },
             function (){
