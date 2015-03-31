@@ -57,24 +57,32 @@ var app = {
             document.getElementById("batteryStatus").innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
         }
 
-        // window.tts.startup(
-        //     function (){
-        //         alert("win startup");
-        //         window.tts.speak("The TTS service is ready",
-        //             function (){
-        //                 alert("win speak");
-        //             },
-        //             function (){
-        //                 alert("fail speak");
-        //             }
-        //         );
-        //     },
-        //     function (){
-        //         alert("fail startup");
-        //     }
-        // );
+        window.tts.startup(
+            function (){
+                alert("win startup");
+                window.tts.setLanguage("en",
+                    function (){
+                        alert("win setLanguage");
+                        window.tts.speak("The TTS service is ready",
+                            function (){
+                                alert("win speak");
+                            },
+                            function (){
+                                alert("fail speak");
+                            }
+                        );
+                    },
+                    function (){
+                        alert("fail setLanguage");
+                    }
+                );
+            },
+            function (){
+                alert("fail startup");
+            }
+        );
 
-        ttsPlugin.iniTTS(
+        /*ttsPlugin.iniTTS(
             function (){
                 ttsPlugin.speak("Hello World");
                 alert("win initTTs");
@@ -82,7 +90,7 @@ var app = {
             function (){
                 alert("fail initTTS");
             }
-        );
+        );*/
     }
 };
 
