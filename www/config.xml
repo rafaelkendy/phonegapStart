@@ -72,6 +72,7 @@
     -->
     <gap:plugin name="org.tt.plugin.tts" />
     <gap:plugin name="com.lefortsoftware.ttsplugin" />
+    <gap:plugin name="org.nypr.cordova.wakeupplugin" />
 
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />
