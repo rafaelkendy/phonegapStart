@@ -10,6 +10,9 @@
     <link href="css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+    <input type="number" id="hour" min="0" max="23" step="1" value="0">
+    <input type="number" id="minute" min="0" max="59" step="1" value="0">
+    <br>
     #<input type="text" id="string">
     <input type="submit" id="submit">
     <div id="jp_container_N" class="jp-video jp-video-270p" role="application" aria-label="media player">
@@ -71,81 +74,103 @@
     <script>
         $(document).ready(function (){
 
-            document.addEventListener('deviceready', onDeviceReady, false);
-            
-            function onDeviceReady(e){
-                window.addEventListener("batterystatus", onBatteryStatus, false);
+            $("#jp_container_N").hide();
 
-                function onBatteryStatus(info) {
-                    // Handle the online event
-                    if (info.isPlugged) {
-                        getTweets();
-                    }
-                   
+            function getTweets() {
+
+                function toggleLights(turnOn){
+                    var callLights = $.ajax({
+                        type: "GET",
+                        url: "http://rafaelkendy.com/works/alarmclock/led.php?state=" + turnOn.toString()
+                    });
+                    callLights.done(function(data){
+                        console.log(data);
+                    });
                 }
 
-                function getTweets() {
+                var string = $('#string').val();
 
-                    //var string = $('#string').val();
-                    var string = "toronto";
+                toggleLights(1);
 
-                    var ajaxObject = $.ajax({
-                        type:"GET",
-                        url:"http://rafaelkendy.com/works/alarmclock/getTweets.php",
-                        data: {q:string}
-                    });
-                    ajaxObject.done(function(data) {
-                        
-                        var jsonResponse = JSON.parse(data);
-                        var tweet,
-                            t = 0,
-                            tweets = [],
-                            msg;
-                        
-                        $('#msgs').html("");
+                var ajaxObject = $.ajax({
+                    type:"GET",
+                    url:"http://rafaelkendy.com/works/alarmclock/getTweets.php",
+                    data: {q:string}
+                });
+                ajaxObject.done(function(data) {
+                    
+                    var jsonResponse = JSON.parse(data);
+                    var tweet,
+                        t = 0,
+                        tweets = [],
+                        msg;
+                    
+                    $('#msgs').html("");
 
-                        $.each(jsonResponse.statuses, function(i, val){
-                            console.log(val);
-                            tweet = val.text.replace(/(https?:\/\/[^\s]+)/g,"");
-                            //$("#msgs").append( $("<p>").html(tweet) );
-                            //tweet = tweet.replace(/#/g, "hashtag");
-                            //tweet = encodeURIComponent(tweet.trim().replace(/#/g, "hashtag"));
-                            //tweets.push(tweet.trim());
-                            tweets.push({
-                                title: tweet,
-                                artist: val.user.name,
-                                free: true,
-                                mp3: "http://tts-api.com/tts.mp3?q=" + encodeURIComponent(tweet.trim().replace(/#/g, "hashtag") + " by " + val.user.name)
-                            });
+                    $.each(jsonResponse.statuses, function(i, val){
+                        console.log(val);
+                        tweet = val.text.replace(/(https?:\/\/[^\s]+)/g,"");
+                        tweets.push({
+                            title: tweet,
+                            artist: val.user.name,
+                            free: true,
+                            mp3: "http://tts-api.com/tts.mp3?q=" + encodeURIComponent(tweet.trim().replace(/#/g, "hashtag") + " by " + val.user.name)
                         });
-                        $("#jp_container_N").show();
-                        var myPlaylist = new jPlayerPlaylist({
-                            jPlayer: "#jquery_jplayer_N",
-                            cssSelectorAncestor: "#jp_container_N"
-                        }, tweets, {
-                            playlistOptions: {
-                                enableRemoveControls: true
-                            },
-                            supplied: "webmv, ogv, m4v, oga, mp3",
-                            useStateClassSkin: true,
-                            autoBlur: false,
-                            smoothPlayBar: true,
-                            keyEnabled: true,
-                            audioFullScreen: true,
-                            preload: "auto",
-                            ready: function () {
-                                $(this).jPlayer("play");
+                    });
+                    $("#jp_container_N").show();
+                    var myPlaylist = new jPlayerPlaylist({
+                        jPlayer: "#jquery_jplayer_N",
+                        cssSelectorAncestor: "#jp_container_N"
+                    }, tweets, {
+                        playlistOptions: {
+                            enableRemoveControls: true
+                        },
+                        supplied: "webmv, ogv, m4v, oga, mp3",
+                        useStateClassSkin: true,
+                        autoBlur: false,
+                        smoothPlayBar: true,
+                        keyEnabled: true,
+                        audioFullScreen: true,
+                        preload: "auto",
+                        ready: function () {
+                            $(this).jPlayer("play");
+                            navigator.vibrate(3000);
+                        },
+                        play: toggleLights(1),
+                        ended: function(){
+                            t++;
+                            if (t >= myPlaylist.playlist.length) {
+                                toggleLights(0);
                             }
-                        });
-
+                        }
                     });
-                }
+
+                    $(".jp-next").click(function(){t++;});
+                    $(".jp-previous").click(function(){t--;});
+
+                });
             }
-            //$("#jp_container_N").hide();
 
-            
+            function setAlarm(){
+                var now = new Date();
+                var setDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), $("#hour").val(), $("#minute").val());
+                if (setDate > now) {
+                    var diff = setDate - now;
+                } else {
+                    var diff = now - setDate + 24 * 3600000;
+                };
+                setTimeout(getTweets, diff);
+            }
 
-            //$('#submit').click(getTweets);
+            // $("#hour").change(function (e){
+            //  $("#hourTxt").html($(this).val());
+            // });
+
+            // $("#minute").change(function (e){
+            //  $("#minuteTxt").html($(this).val());
+            // });
+
+            $('#submit').click(setAlarm);
 
         });
     </script>

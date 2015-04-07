@@ -54,31 +54,31 @@ var app = {
         function onBatteryStatus(info) {
             // Handle the online event
             alert(info.level);
-            document.getElementById("batteryStatus").innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
+            document.getElementById("batteryStatus").innerHTML= "Level: " + info.level + " isPlugged: " + info.isPlugged;
         }
 
         window.tts.startup(
             function (){
-                alert("win startup");
+                //alert("win startup");
                 window.tts.setLanguage("en",
                     function (){
-                        alert("win setLanguage");
+                        //alert("win setLanguage");
                         window.tts.speak("The TTS service is ready",
                             function (){
-                                alert("win speak");
+                                //alert("win speak");
                             },
                             function (){
-                                alert("fail speak");
+                                //alert("fail speak");
                             }
                         );
                     },
                     function (){
-                        alert("fail setLanguage");
+                        //alert("fail setLanguage");
                     }
                 );
             },
             function (){
-                alert("fail startup");
+                //alert("fail startup");
             }
         );
 
