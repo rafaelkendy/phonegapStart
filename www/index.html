@@ -7,8 +7,9 @@
     <meta name="msapplication-tap-highlight" content="no" />
     <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
     <link rel="icon" type="image/ico" href="image/favicon.ico"/>
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet' type='text/css'>
     <link href="css/styles.css" rel="stylesheet" type="text/css" />
     <link href="css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css" />
 </head>
@@ -125,7 +126,7 @@
                 function toggleLights(turnOn){
                     var callLights = $.ajax({
                         type: "GET",
-                        url: "led.php?state=" + turnOn.toString()
+                        url: "http://rafaelkendy.com/works/alarmclock/led.php?state=" + turnOn.toString()
                     });
                     callLights.done(function(data){
                         console.log(data);
@@ -138,7 +139,7 @@
 
                 var ajaxObject = $.ajax({
                     type:"GET",
-                    url:"getTweets.php",
+                    url:"http://rafaelkendy.com/works/alarmclock/getTweets.php",
                     data: {q:string}
                 });
                 ajaxObject.done(function(data) {
