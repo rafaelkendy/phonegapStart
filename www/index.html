@@ -90,7 +90,7 @@
 
                 var string = $('#string').val();
 
-                toggleLights(1);
+                //toggleLights(1);
 
                 var ajaxObject = $.ajax({
                     type:"GET",
@@ -135,8 +135,8 @@
                         ready: function () {
                             $(this).jPlayer("play");
                             //navigator.vibrate(3000);
+                            toggleLights(1);
                         },
-                        play: toggleLights(1),
                         ended: function(){
                             t++;
                             if (t >= myPlaylist.playlist.length) {
