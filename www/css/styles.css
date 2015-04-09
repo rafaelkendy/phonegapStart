@@ -1,0 +1,158 @@
+body {
+	margin: 0;
+	background: #f5f8fa;
+}
+
+
+h1{
+	font-family: 'Lato', sans-serif;
+	font-size: 2.8em;
+	color: #55ACEE;
+	text-align: center;
+	margin-top: 10%;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+}
+
+#clock-container { 
+  width: 30%;
+  margin: 0px auto;
+  vertical-align: middle;
+  margin-bottom: -35px;
+} 
+
+#face { 
+	stroke-width: 2px; 
+	fill: #292f33; 
+	stroke: #ccd6dd; 
+	transition: all 0.5s ease;
+}
+
+#hour, #min, #sec { 
+  stroke-width: 1px;
+  fill: white;
+  stroke: #ccd6dd;
+}
+
+
+#sec { 
+	stroke: #55ACEE; 
+}
+
+h2{
+	text-align: center;
+	font-family: 'Lato', sans-serif;
+	color: #292f33; 
+	font-weight: lighter;
+	font-size: 1.5em;
+}
+
+
+#input{
+	padding: 10px;
+	width: 50%;
+  	margin: 0px auto;
+  	text-align: center;
+  	font-family: 'Lato', sans-serif;
+  	margin-top: 20px;
+}
+
+input[type=text] {
+	border:2px; 
+	padding: 1% 2.5%;
+	height:30px;
+	width: 85%;
+	solid: #ccc; 
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	margin-top: 5px;
+	font-family: 'Lato', sans-serif;
+	font-size: 1em;
+
+}
+
+input[type=text]:focus {
+	border-color:black; 
+}
+
+input[type=submit] {
+
+	width: 90%;
+	height: 45px;
+	margin-top: 15px;	
+	padding: 5px 15px;
+	color: white; 
+	background: #55ACEE; 
+	transition: background 0.5s ease;
+	border: 0 none;
+	cursor:pointer;
+	-webkit-border-radius: 5px;
+	border-radius: 5px; 
+	font-size: 1.3em;
+}
+
+input:hover[type=submit] {
+	background: #292f33; 
+}
+
+
+#hourInput{
+	width:25%;
+	solid: #ccc; 
+	margin-top: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	color: black; 
+	background: white; 
+	border: 0 none;
+	height: 40px;
+	text-align: center;
+	font-family: 'Lato', sans-serif;
+	font-size: 1em;
+}
+
+
+#minuteInput{
+	width:25%;
+	solid: #ccc; 
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	color: black; 
+	background: white; 
+	border: 0 none;
+	height: 40px;
+	text-align: center;
+	font-family: 'Lato', sans-serif;
+	font-size: 1em;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type=number] {
+	-moz-appearance: textfield;
+}
+
+.jp-video-270p {
+	/* width: 480px; */
+	min-width: 320px;
+	max-width: 45%;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+#jquery_jplayer_N {
+	width: 100% !important;
+}
+
+/*Media Queries */
+@media (max-width: 650px) {
+  h1 {
+    font-size: 1.8em;
+  }
+
+}
