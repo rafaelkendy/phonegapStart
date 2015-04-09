@@ -3,17 +3,17 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.rafaelkendy.firstTest"
+        id        = "com.rafaelkendy.tweetmeup"
         version   = "1.0.0">
 
-    <name>Rafael Kendy</name>
+    <name>Tweet Me Up</name>
 
     <description>
-        First Test sample application that responds to the deviceready event.
+        Social Media Alarm Clock.
     </description>
 
     <author href="http://rafaelkendy.com" email="rafaelkendy@gmail.com">
-        Rafael Kendy
+        Tweet Me Up - Jennifer Vandermeer, Elena DiCecco, Andross Moonah, Rafael Kendy
     </author>
 
     <!--
@@ -63,7 +63,7 @@
     <gap:plugin name="org.apache.cordova.media" />
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" /> -->
-    <gap:plugin name="org.apache.cordova.vibration" />
+    <!-- <gap:plugin name="org.apache.cordova.vibration" /> -->
 
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
